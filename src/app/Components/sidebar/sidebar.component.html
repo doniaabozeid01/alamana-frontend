@@ -1,0 +1,31 @@
+<div class="sidebar">
+  <div class="logo">
+    <span class="green">T</span><span class="blue">4</span><span class="green">TEA</span>
+  </div>
+
+  <ul class="menu">
+    <li (click)="toggleSection('stores')" class="section">
+       Stores
+    </li>
+    <ul *ngIf="openSection === 'stores'" class="submenu">
+      <li routerLink="/stores/add"> Add Store</li>
+      <li routerLink="/stores/list"> View Stores</li>
+    </ul>
+
+    <li (click)="toggleSection('categories')" class="section" [class.disabled]="!storeSelected">
+       Categories
+    </li>
+    <ul *ngIf="openSection === 'categories' && storeSelected" class="submenu">
+      <li routerLink="/categories/add"> Add Category</li>
+      <li routerLink="/categories/list"> View Categories</li>
+    </ul>
+
+    <li (click)="toggleSection('products')" class="section" [class.disabled]="!categorySelected">
+       Products
+    </li>
+    <ul *ngIf="openSection === 'products' && categorySelected" class="submenu">
+      <li routerLink="/products/add"> Add Product</li>
+      <li routerLink="/products/list"> View Products</li>
+    </ul>
+  </ul>
+</div>

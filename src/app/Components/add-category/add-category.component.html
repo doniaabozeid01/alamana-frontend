@@ -1,0 +1,32 @@
+<div class="add-category-container">
+  <h2>Add Category</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Name (English)</label>
+      <input type="text" [(ngModel)]="category.name" name="name" required />
+    </div>
+
+    <div class="form-group">
+      <label>Name (Arabic)</label>
+      <input type="text" [(ngModel)]="category.nameAr" name="nameAr" required />
+    </div>
+
+    <div class="form-group">
+      <label>Description (English)</label>
+      <textarea [(ngModel)]="category.description" name="description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Description (Arabic)</label>
+      <textarea [(ngModel)]="category.descriptionAr" name="descriptionAr"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Image</label>
+<input type="file" (change)="onFileSelected($event)" />
+    </div>
+
+    <button type="submit">Add Category</button>
+  </form>
+</div>

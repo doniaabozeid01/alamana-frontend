@@ -1,0 +1,46 @@
+<div class="category-list-container">
+  <h2>All Categories</h2>
+
+  <table class="category-table" *ngIf="categories.length > 0; else noData">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name (EN)</th>
+        <th>Name (AR)</th>
+        <th>Description</th>
+        <th>Description (AR)</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let cat of categories">
+        <td><img [src]="cat.image" alt="{{cat.name}}" /></td>
+        <td *ngIf="editCategory?.id !== cat.id">{{cat.name}}</td>
+        <td *ngIf="editCategory?.id !== cat.id">{{cat.nameAr}}</td>
+        <td *ngIf="editCategory?.id !== cat.id">{{cat.description}}</td>
+        <td *ngIf="editCategory?.id !== cat.id">{{cat.descriptionAr}}</td>
+
+        <!-- Edit Mode -->
+        <ng-container *ngIf="editCategory?.id === cat.id">
+          <td><input [(ngModel)]="editCategory?.name" /></td>
+          <td><input [(ngModel)]="editCategory?.nameAr" /></td>
+          <td><input [(ngModel)]="editCategory?.description" /></td>
+          <td><input [(ngModel)]="editCategory?.descriptionAr" /></td>
+        </ng-container>
+
+        <td class="actions">
+          <button *ngIf="editCategory?.id !== cat.id" (click)="onEdit(cat)" class="edit">Edit</button>
+          <button *ngIf="editCategory?.id !== cat.id" (click)="onDelete(cat.id)" class="delete">Delete</button>
+
+          <button *ngIf="editCategory?.id === cat.id" (click)="onSave()" class="save">Save</button>
+          <button *ngIf="editCategory?.id === cat.id" (click)="onCancel()" class="cancel">Cancel</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p class="no-data">No categories found.</p>
+  </ng-template>
+</div>
