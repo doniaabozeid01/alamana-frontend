@@ -1,0 +1,76 @@
+<div class="container py-1 px-5">
+  <div class="card shadow border-0">
+    <div class="card-header main-color">
+      <h4 class="mb-0">Add Country</h4>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="saveWarehouse()" #warehouseForm="ngForm">
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newCountry.name"
+            name="name"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Name (Arabic)</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newCountry.nameArabic"
+            name="nameArabic"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Currency</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newCountry.currency"
+            name="currency"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Currency (Arabic)</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newCountry.currencyArabic"
+            name="currencyArabic"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Country Code</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newCountry.code"
+            name="code"
+            required
+          />
+        </div>
+
+        <div class="text-end">
+          <button
+            type="submit"
+            class="btn btn-main-color"
+            [disabled]="!warehouseForm.valid"
+          >
+            Add Country
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

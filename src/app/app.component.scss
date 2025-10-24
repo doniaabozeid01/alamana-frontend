@@ -1,0 +1,19 @@
+.row {
+  height: 100%;
+}
+
+.col-3, .col-9 {
+  height: 100%;
+}
+
+
+
+.sidebar {
+  height: 100%;
+  overflow-y: auto; /* scroll داخلي للـ sidebar فقط لو محتوى كتير */
+}
+
+.main-content {
+  height: 100%;
+  overflow-y: auto; /* scroll داخلي للمحتوى الرئيسي لو محتوى كتير */
+}

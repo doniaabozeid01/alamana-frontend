@@ -1,0 +1,64 @@
+<div class="container py-4 px-5">
+  <div class="card shadow border-0">
+    <div class="card-header main-color">
+      <h4 class="mb-0">Assign Categories & Products</h4>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="saveAssignments()" #assignmentForm="ngForm">
+
+        <!-- Categories مع checkbox والكلمة clickable -->
+        <div class="mb-3">
+          <label class="form-label">Select Categories</label>
+          <div *ngFor="let category of categories">
+            <div class="d-flex align-items-center justify-content-between">
+
+              <!-- الكلمة + checkbox clickable -->
+              <label class="d-flex align-items-center" style="cursor: pointer;">
+                <input 
+                  type="checkbox" 
+                  [value]="category.id"
+                  (change)="toggleCategory(category.id, $event)"
+                  [checked]="selectedCategoryIds.includes(category.id)"
+                  class="me-2"
+                />
+                {{ category.name }}
+              </label>
+
+              <!-- السهم يظهر مباشرة بعد الاختيار -->
+              <button type="button" class="btn btn-link btn-sm" 
+                      (click)="toggleCategoryProducts(category.id)" 
+                      *ngIf="selectedCategoryIds.includes(category.id)">
+                {{ categoryOpen[category.id] ? '🔼' : '🔽' }}
+              </button>
+            </div>
+
+            <!-- المنتجات تظهر حسب السهم -->
+            <div class="ms-4 mt-2" *ngIf="categoryOpen[category.id] && selectedCategoryIds.includes(category.id)">
+              <div *ngFor="let product of getProductsByCategory(category.id)">
+                <label class="d-flex align-items-center" style="cursor: pointer;">
+                  <input 
+                    type="checkbox" 
+                    [value]="product.id" 
+                    (change)="toggleProduct(category.id, product.id, $event)"
+                    [checked]="isProductSelected(category.id, product.id)"
+                    class="me-2"
+                  />
+                  {{ product.name }}
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="text-end">
+          <button type="submit" class="btn btn-main-color" [disabled]="!assignmentForm.valid">
+            Save Assignments
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

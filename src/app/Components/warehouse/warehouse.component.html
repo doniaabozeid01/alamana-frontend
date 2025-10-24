@@ -1,0 +1,57 @@
+<div class="p-5">
+  <div class="card shadow-lg border-0">
+    <div class="card-header text-white d-flex justify-content-between align-items-center">
+      <!-- <h4 class="mb-0">🏭 Warehouses</h4> -->
+      <button (click)="addWarehouse()" class="btn btn-main-color btn-sm fw-bold">
+        + Add Warehouse
+      </button>
+    </div>
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle text-center">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Location</th>
+              <!-- <th>Capacity</th> -->
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let w of warehouses">
+              <td>{{ w.id }}</td>
+
+              <!-- لو الصف ده في وضع التعديل -->
+              <ng-container *ngIf="editId === w.id; else viewRow">
+                <td><input [(ngModel)]="editedWarehouse.name" class="form-control form-control-sm"></td>
+                <td><input [(ngModel)]="editedWarehouse.location" class="form-control form-control-sm"></td>
+                <!-- <td><input [(ngModel)]="editedWarehouse.capacity" type="number" class="form-control form-control-sm"></td> -->
+                <td>
+                  <button (click)="saveEdit(w.id)" class="btn btn-success btn-sm me-2">Save</button>
+                  <button (click)="cancelEdit()" class="btn btn-secondary btn-sm">Cancel</button>
+                </td>
+              </ng-container>
+
+              <!-- عرض الصف العادي -->
+              <ng-template #viewRow>
+                <td>{{ w.name }}</td>
+                <td>{{ w.location }}</td>
+                <!-- <td>{{ w.capacity }}</td> -->
+                <td>
+                  <button (click)="startEdit(w)" class="btn btn-outline-primary btn-sm me-2">✏️</button>
+                  <button (click)="deleteWarehouse(w.id)" class="btn btn-outline-danger btn-sm">🗑</button>
+                </td>
+              </ng-template>
+            </tr>
+
+            <tr *ngIf="warehouses.length === 0">
+              <td colspan="5" class="text-muted py-3">No warehouses available.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

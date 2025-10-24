@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* ده هيشيل scroll */
+}
+
+.btn-main-color {
+  padding: 6px 40px;
+  background-color: #02264c;
+  color: white;
+  &:hover {
+    background-color: #ebf744;
+    color: white;
+    transition: all 1s;
+  }
+}
+
+
+.main-color{
+  color: #02264c;
+
+}

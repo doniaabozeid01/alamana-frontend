@@ -1,32 +1,43 @@
-<div class="add-category-container">
-  <h2>Add Category</h2>
-
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label>Name (English)</label>
-      <input type="text" [(ngModel)]="category.name" name="name" required />
+<div class="container py-4 px-5">
+  <div class="card shadow border-0">
+    <div class="card-header main-color">
+      <h4 class="mb-0">Add Category</h4>
     </div>
 
-    <div class="form-group">
-      <label>Name (Arabic)</label>
-      <input type="text" [(ngModel)]="category.nameAr" name="nameAr" required />
-    </div>
+    <div class="card-body">
+      <form (ngSubmit)="saveItem()" #itemForm="ngForm">
 
-    <div class="form-group">
-      <label>Description (English)</label>
-      <textarea [(ngModel)]="category.description" name="description"></textarea>
-    </div>
+        <!-- Name English -->
+        <div class="mb-3">
+          <label class="form-label">Name (English)</label>
+          <input type="text" class="form-control" [(ngModel)]="newItem.nameEn" name="nameEn" required />
+        </div>
 
-    <div class="form-group">
-      <label>Description (Arabic)</label>
-      <textarea [(ngModel)]="category.descriptionAr" name="descriptionAr"></textarea>
-    </div>
+        <!-- Name Arabic -->
+        <div class="mb-3">
+          <label class="form-label">Name (Arabic)</label>
+          <input type="text" class="form-control" [(ngModel)]="newItem.nameAr" name="nameAr" required />
+        </div>
 
-    <div class="form-group">
-      <label>Image</label>
-<input type="file" (change)="onFileSelected($event)" />
-    </div>
+        <!-- Description English -->
+        <div class="mb-3">
+          <label class="form-label">Description (English)</label>
+          <textarea class="form-control" [(ngModel)]="newItem.descriptionEn" name="descriptionEn"></textarea>
+        </div>
 
-    <button type="submit">Add Category</button>
-  </form>
+        <!-- Description Arabic -->
+        <div class="mb-3">
+          <label class="form-label">Description (Arabic)</label>
+          <textarea class="form-control" [(ngModel)]="newItem.descriptionAr" name="descriptionAr"></textarea>
+        </div>
+
+        <div class="text-end">
+          <button type="submit" class="btn btn-main-color" [disabled]="!itemForm.valid">
+            Save Item
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
 </div>

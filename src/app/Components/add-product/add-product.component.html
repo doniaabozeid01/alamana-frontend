@@ -1,1 +1,48 @@
-<p>add-product works!</p>
+<div class="container py-4 px-5">
+  <div class="card shadow border-0">
+    <div class="card-header main-color">
+      <h4 class="mb-0">Add Product</h4>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="saveItem()" #itemForm="ngForm">
+
+        <!-- Name English -->
+        <div class="mb-3">
+          <label class="form-label">Name (English)</label>
+          <input type="text" class="form-control" [(ngModel)]="newItem.nameEn" name="nameEn" required />
+        </div>
+
+        <!-- Name Arabic -->
+        <div class="mb-3">
+          <label class="form-label">Name (Arabic)</label>
+          <input type="text" class="form-control" [(ngModel)]="newItem.nameAr" name="nameAr" required />
+        </div>
+
+        <!-- Description English -->
+        <div class="mb-3">
+          <label class="form-label">Description (English)</label>
+          <textarea class="form-control" [(ngModel)]="newItem.descriptionEn" name="descriptionEn"></textarea>
+        </div>
+
+        <!-- Description Arabic -->
+        <div class="mb-3">
+          <label class="form-label">Description (Arabic)</label>
+          <textarea class="form-control" [(ngModel)]="newItem.descriptionAr" name="descriptionAr"></textarea>
+        </div>
+
+        <div class="text-end">
+          <button type="submit" class="btn btn-main-color" [disabled]="!itemForm.valid">
+            Save Item
+          </button>
+
+
+          <button type="button" (click)="done()" class="btn btn-main-color mx-2">
+            Done
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

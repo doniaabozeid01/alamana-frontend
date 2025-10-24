@@ -1,0 +1,13 @@
+.card {
+  border-radius: 15px;
+}
+
+input.form-control {
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+input.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px #007bff60;
+}

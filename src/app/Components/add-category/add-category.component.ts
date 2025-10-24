@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-category',
@@ -6,26 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-category.component.scss']
 })
 export class AddCategoryComponent {
-  category = {
-    name: '',
+
+
+  newItem = {
+    nameEn: '',
     nameAr: '',
-    description: '',
+    descriptionEn: '',
     descriptionAr: '',
-    image: ''
   };
 
-  onSubmit() {
-    console.log('Category Added:', this.category);
+  constructor(private router: Router) {}
+
+  saveItem() {
+    console.log('Saved:', this.newItem);
+    alert('✅ Item saved successfully!');
+    this.router.navigate(['/add-product']); // ترجع للقائمة أو أي صفحة رئيسية
   }
-
-  onFileSelected(event: Event) {
-  const input = event.target as HTMLInputElement;
-  if (input.files && input.files.length > 0) {
-    this.category.image = input.files[0].name;
-  }
-}
-
-
-
-
 }
