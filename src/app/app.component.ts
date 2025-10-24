@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'alamana';
+
+  sidebarOpen = false;
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+    console.log('Sidebar open:', this.sidebarOpen); // للتأكد من التغيير
+  }
+
 }
