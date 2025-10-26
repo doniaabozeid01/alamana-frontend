@@ -4,12 +4,13 @@ import { ApiService } from 'src/app/Services/api.service';
 
 interface Item {
   id: number;
+  productId: number;
   nameEn: string;
   nameAr: string;
   price: number;
   currencyEn: string;
   currencyAr: string;
-  currencyCode: string;
+  countryCode: string;
 
 }
 
@@ -27,53 +28,31 @@ export class ProductCategoryWarehouseCountryComponent {
   warehouseId: number = 0;
   editMode = false;
   editId: number | null = null;
-  newItem: Item = { id: 0, nameEn: '', nameAr: '', price: 0, currencyEn: '', currencyAr: '', currencyCode: '' };
+  newItem: Item = {id:0, productId: 0, nameEn: '', nameAr: '', price: 0, currencyEn: '', currencyAr: '', countryCode: '' };
 
 
   ngOnInit() {
     this.categoryId = Number(this.activatedroute.snapshot.paramMap.get('categoryId'));
     this.warehouseId = Number(this.activatedroute.snapshot.paramMap.get('warehouseId'));
-    this.getProductsByCategory();
+    this.GetProductsByWarehouseCategoryAndCountry();
   }
 
-  editItem(item: Item) {
-    this.editMode = true;
-    this.editId = item.id;
-    this.newItem = { ...item };
-  }
-
-  cancelEdit() {
-    this.editMode = false;
-    this.editId = null;
-    this.newItem = { id: 0, nameEn: '', nameAr: '', price: 0, currencyEn: '', currencyAr: '', currencyCode: '' };
-  }
-
-  updateItem() {
-
-    this.api.UpdateCategory(this.newItem.id, this.newItem).subscribe({
-      next: (response) => {
-        console.log(response);
-        this.cancelEdit();
-        this.getProductsByCategory()
-      }
-    })
-  }
 
   deleteItem(id: number) {
-    this.api.DeleteProduct(id).subscribe({
+    this.api.DeleteByWarehouseIdAndProductId(this.warehouseId,id).subscribe({
       next: (response) => {
         console.log(response);
-        this.getProductsByCategory()
+        this.GetProductsByWarehouseCategoryAndCountry();
       }
     })
   }
 
 
-  getProductsByCategory() {
-    this.api.productsByCategory(this.categoryId).subscribe({
+  GetProductsByWarehouseCategoryAndCountry() {
+    this.api.GetProductsByWarehouseCategoryAndCountry(this.warehouseId,this.categoryId).subscribe({
       next: (response) => {
         console.log(response);
-        this.items = response.data.products;
+        this.items = response.data;
       }
     })
   }

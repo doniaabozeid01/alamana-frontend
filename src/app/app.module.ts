@@ -20,6 +20,12 @@ import { WarehouseCategoryAssignComponent } from './Components/warehouse-categor
 import { AssignNewCaetgoryToWarehouseComponent } from './Components/assign-new-caetgory-to-warehouse/assign-new-caetgory-to-warehouse.component';
 import { ProductCategoryWarehouseCountryComponent } from './Components/product-category-warehouse-country/product-category-warehouse-country.component';
 import { AssignNewProductToWarehouseComponent } from './Components/assign-new-product-to-warehouse/assign-new-product-to-warehouse.component';
+import { AssignmentsComponent } from './Components/assignments/assignments.component';
+import { AssignProductToCountryAndAddPriceComponent } from './Components/assign-product-to-country-and-add-price/assign-product-to-country-and-add-price.component';
+import { CountryProductsdataComponent } from './Components/country-productsdata/country-productsdata.component';
+import { LoginComponent } from './Components/login/login.component';
+import { SplashComponent } from './Components/splash/splash.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,13 @@ import { AssignNewProductToWarehouseComponent } from './Components/assign-new-pr
     WarehouseCategoryAssignComponent,
     AssignNewCaetgoryToWarehouseComponent,
     ProductCategoryWarehouseCountryComponent,
-    AssignNewProductToWarehouseComponent
+    AssignNewProductToWarehouseComponent,
+    AssignmentsComponent,
+    AssignProductToCountryAndAddPriceComponent,
+    CountryProductsdataComponent,
+    LoginComponent,
+    SplashComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

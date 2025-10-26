@@ -1,14 +1,4 @@
 <div class="parent m-0 p-0  px-3 px-lg-5">
-  <div
-    class="card-header text-white d-flex justify-content-between align-items-center mx-3 mb-2"
-  >
-    <button
-      class="btn btn-main-color btn-sm fw-bold"
-      (click)="addProduct()"
-    >
-      + Assign New Product
-    </button>
-  </div>
 
   <div class="card shadow border-0 w-100 p-0 m-0">
     <div class="card-body">
@@ -22,7 +12,7 @@
               <th>Price</th>
               <th>Currency (EN)</th>
               <th>Currency (AR)</th>
-              <th>CurrencyCode</th>
+              <!-- <th>CurrencyCode</th> -->
               <th>Actions</th>
             </tr>
           </thead>
@@ -83,19 +73,10 @@
                 {{ item.currencyAr }}
               </td>
 
-              <td *ngIf="editMode && editId === item.id">
-                <input
-                  [(ngModel)]="newItem.countryCode"
-                  class="form-control text-center"
-                />
-              </td>
-              <td *ngIf="!(editMode && editId === item.id)">
-                {{ item.countryCode }}
-              </td>
 
               <td>
                   <button
-                    (click)="deleteItem(item.productId)"
+                    (click)="deleteItem(item.id)"
                     class="btn btn-outline-danger btn-sm"
                   >
                     🗑
