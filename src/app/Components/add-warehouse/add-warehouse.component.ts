@@ -1,20 +1,6 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-add-warehouse',
-//   templateUrl: './add-warehouse.component.html',
-//   styleUrls: ['./add-warehouse.component.scss']
-// })
-// export class AddWarehouseComponent {
-
-// }
-
-
-
-
-
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/Services/api.service';
 
 interface Warehouse {
   id: number;
@@ -31,32 +17,31 @@ interface Warehouse {
 })
 export class AddWarehouseComponent {
 
-  countries = [
-    { id: 1, name: 'Egypt' },
-    { id: 2, name: 'Saudi Arabia' },
-    { id: 3, name: 'UAE' },
-    { id: 4, name: 'Morocco' },
-    { id: 5, name: 'Monsora' }
-  ];
-
+  countryId: number = 0;
   newWarehouse = {
     name: '',
     location: '',
-    // capacity: 0,
     countryId: 0
   };
 
+  ngOnInit() {
+    this.countryId = Number(this.activatedroute.snapshot.paramMap.get('countryId'));
+  }
 
+  // warehouse: Warehouse = { id: 0, name: '', location: '', countryId: 0 };
 
-  warehouse: Warehouse = { id: 0, name: '', location: '', countryId : 0};
-
-  constructor(private router: Router) {}
+  constructor(private router: Router, private api: ApiService, private activatedroute: ActivatedRoute) { }
 
   saveWarehouse() {
-    // في الحالة الواقعية هيتبعت الـ warehouse دا للسيرفر
-    console.log('Saved:', this.warehouse);
-    alert('✅ Warehouse added successfully!');
-    this.router.navigate(['/add-warehouse-categories-and-products']); // يرجع تاني لصفحة القائمة
+    this.newWarehouse.countryId = this.countryId;
+    this.api.CreateWarehouse(this.newWarehouse).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.router.navigate(['/add-warehouse-categories-and-products',response.data]); // يرجع تاني لصفحة القائمة
+
+      }
+    }
+    )
   }
 
   cancel() {

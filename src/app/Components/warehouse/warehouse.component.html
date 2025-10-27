@@ -44,6 +44,7 @@
                 <td>{{ w.location }}</td>
                 <!-- <td>{{ w.capacity }}</td> -->
                 <td>
+                  <button (click)="getCategories(w.id)" class="btn btn-outline-primary btn-sm me-2">Categories</button>
                   <button (click)="startEdit(w)" class="btn btn-outline-primary btn-sm me-2">✏️</button>
                   <button (click)="deleteWarehouse(w.id)" class="btn btn-outline-danger btn-sm">🗑</button>
                 </td>

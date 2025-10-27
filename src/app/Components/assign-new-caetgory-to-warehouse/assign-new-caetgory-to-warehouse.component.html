@@ -1,0 +1,40 @@
+<div class="container px-3 px-lg-5">
+    <div class="card shadow border-0">
+        <div class="card-header main-color">
+            <h4 class="mb-0">Assign new category</h4>
+        </div>
+
+        <div class="card-body">
+            <form (ngSubmit)="saveItem()" #itemForm="ngForm">
+
+<div class="mb-3">
+  <label class="form-label">Category</label>
+  <select
+    class="form-select"
+    [(ngModel)]="newItem.categoryId"
+    name="categoryId"
+    required>
+    <option [ngValue]="null" disabled>Select a category</option>
+    <option *ngFor="let cat of categories" [value]="cat.id">
+      {{ cat.nameEn }} - {{ cat.nameAr }}
+    </option>
+  </select>
+</div>
+
+
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-main-color" [disabled]="!itemForm.valid">
+                        Save Item
+                    </button>
+
+
+                    <button type="button" (click)="done()" class="btn btn-main-color mx-2">
+                        Done
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

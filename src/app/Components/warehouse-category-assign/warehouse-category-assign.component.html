@@ -1,0 +1,50 @@
+<div class=" px-3 px-lg-5">
+
+
+    <div class="card-header text-white d-flex justify-content-between align-items-center mx-3 mb-2">
+        <button (click)="assignCategory()" class="btn btn-main-color btn-sm fw-bold">
+            + Assign new category
+        </button>
+    </div>
+
+
+    <div class="card shadow-lg border-0">
+
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle text-center">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Name (Arabic)</th>
+                            <!-- <th>Capacity</th> -->
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let w of categories">
+                            <td>{{ w.id }}</td>
+
+
+                            <td>{{ w.nameEn }}</td>
+                            <td>{{ w.nameAr }}</td>
+                            <!-- <td>{{ w.capacity }}</td> -->
+                            <td>
+                                <button (click)="getProducts(w.id)"
+                                    class="btn btn-outline-primary btn-sm me-2">Products</button>
+                                <button (click)="deleteCategoryAssignment(w.id)"
+                                    class="btn btn-outline-danger btn-sm">🗑</button>
+                            </td>
+                        </tr>
+
+                        <tr *ngIf="categories.length === 0">
+                            <td colspan="5" class="text-muted py-3">No warehouses available.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

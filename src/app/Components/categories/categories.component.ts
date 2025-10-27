@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/Services/api.service';
 
 interface Item {
   id: number;
@@ -18,20 +19,24 @@ interface Item {
 })
 export class CategoriesComponent {
 
-  constructor(private router:Router){}
-  items: Item[] = [
-    { id: 1, nameEn: 'Item 1', nameAr: 'عنصر 1', descriptionEn: 'Desc 1', descriptionAr: 'الوصف 1', slug: 'item-1' },
-    { id: 2, nameEn: 'Item 2', nameAr: 'عنصر 2', descriptionEn: 'Desc 2', descriptionAr: 'الوصف 2', slug: 'item-2' }
-  ];
+  constructor(private router: Router, private api: ApiService) { }
+  items: Item[] = [];
+
+
+  ngOnInit() {
+    this.getAllCategories();
+
+  }
 
   editMode = false;
   editId: number | null = null;
-  newItem: Item = { id: 0, nameEn: '', nameAr: '', descriptionEn: '', descriptionAr: '',  slug: '' };
+  newItem: Item = { id: 0, nameEn: '', nameAr: '', descriptionEn: '', descriptionAr: '', slug: '' };
 
   editItem(item: Item) {
     this.editMode = true;
     this.editId = item.id;
     this.newItem = { ...item };
+
   }
 
   cancelEdit() {
@@ -41,24 +46,44 @@ export class CategoriesComponent {
   }
 
   updateItem() {
-    const index = this.items.findIndex(i => i.id === this.editId);
-    if (index > -1) {
-      this.items[index] = { ...this.newItem };
-      this.cancelEdit();
-      alert('✅ Item updated successfully!');
-    }
+    console.log(this.newItem);
+    this.api.UpdateCategory(this.newItem.id, this.newItem).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.getAllCategories();
+        this.cancelEdit();
+      }
+    })
   }
 
   deleteItem(id: number) {
-    if (confirm('Are you sure you want to delete this item?')) {
-      this.items = this.items.filter(i => i.id !== id);
-      alert('✅ Item deleted successfully!');
-    }
+    // if (confirm('Are you sure you want to delete this item?')) {
+    //   this.items = this.items.filter(i => i.id !== id);
+    //   alert('✅ Item deleted successfully!');
+    // }
+
+    this.api.DeleteCategory(id).subscribe({
+      next:(response)=>{
+        console.log(response);
+        this.getAllCategories();
+        
+      }
+    })
   }
 
 
-  getProducts(category:any){
-    this.router.navigate(['/products'])
+  getProducts(category: any) {
+    this.router.navigate(['/products',category.id])
+  }
+
+
+  getAllCategories() {
+    this.api.getAllCategories().subscribe({
+      next: (response) => {
+        this.items = response.data.items;
+        console.log(response);
+      }
+    })
   }
 }
 

@@ -1,0 +1,27 @@
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card-header {
+  // background: linear-gradient(90deg, #007bff, #00b4d8);
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f6fbff;
+  transition: 0.3s;
+}
+
+input.form-control-sm {
+  border-radius: 8px;
+  text-align: center;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}

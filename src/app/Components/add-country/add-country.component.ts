@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/Services/api.service';
 
 interface Country {
-  name: string;
-  nameArabic: string;
-  currency: string;
-  currencyArabic: string;
-  code: string;
+  nameEn: string;
+  nameAr: string;
+  currencyEn: string;
+  currencyAr: string;
+  countryCode: string;
 }
 
 @Component({
@@ -17,23 +18,32 @@ interface Country {
 export class AddCountryComponent {
 
   newCountry: Country = {
-    name: '',
-    nameArabic: '',
-    currency: '',
-    currencyArabic: '',
-    code: ''
+    nameEn: '',
+    nameAr: '',
+    currencyEn: '',
+    currencyAr: '',
+    countryCode: ''
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private api:ApiService) {}
 
   saveWarehouse() {
-    // هنا في الواقع هترسل الـ newWarehouse للسيرفر
-    console.log('Saved:', this.newCountry);
-    alert('✅ Warehouse added successfully!');
-    this.router.navigate(['/add-warehouse']); // يرجع للقائمة أو أي صفحة رئيسية
+    // // هنا في الواقع هترسل الـ newWarehouse للسيرفر
+    // console.log('Saved:', this.newCountry);
+    // alert('✅ Warehouse added successfully!');
+    
+    this.api.CreateCountry(this.newCountry).subscribe({
+      next:(response)=>{
+        console.log(response);
+        
+        this.router.navigate(['/add-warehouse',response.data]); // يرجع للقائمة أو أي صفحة رئيسية
+        
+      }
+    })
+
   }
 
-  cancel() {
-    this.router.navigate(['/']);
-  }
+  // cancel() {
+  //   this.router.navigate(['/']);
+  // }
 }

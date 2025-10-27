@@ -6,29 +6,33 @@ interface Item {
   id: number;
   nameEn: string;
   nameAr: string;
-  descriptionEn?: string;
-  descriptionAr?: string;
-  // isActive: boolean;
-  slug?: string;
+  price: number;
+  currencyEn: string;
+  currencyAr: string;
+  currencyCode: string;
+
 }
 
+
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  selector: 'app-product-category-warehouse-country',
+  templateUrl: './product-category-warehouse-country.component.html',
+  styleUrls: ['./product-category-warehouse-country.component.scss']
 })
-export class ProductsComponent {
+export class ProductCategoryWarehouseCountryComponent {
 
   constructor(private router: Router, private api: ApiService, private activatedroute: ActivatedRoute) { }
   items: Item[] = [];
   categoryId: number = 0;
+  warehouseId: number = 0;
   editMode = false;
   editId: number | null = null;
-  newItem: Item = { id: 0, nameEn: '', nameAr: '', descriptionEn: '', descriptionAr: '', slug: '' };
+  newItem: Item = { id: 0, nameEn: '', nameAr: '', price: 0, currencyEn: '', currencyAr: '', currencyCode: '' };
 
 
   ngOnInit() {
     this.categoryId = Number(this.activatedroute.snapshot.paramMap.get('categoryId'));
+    this.warehouseId = Number(this.activatedroute.snapshot.paramMap.get('warehouseId'));
     this.getProductsByCategory();
   }
 
@@ -41,17 +45,10 @@ export class ProductsComponent {
   cancelEdit() {
     this.editMode = false;
     this.editId = null;
-    this.newItem = { id: 0, nameEn: '', nameAr: '', descriptionEn: '', descriptionAr: '', slug: '' };
+    this.newItem = { id: 0, nameEn: '', nameAr: '', price: 0, currencyEn: '', currencyAr: '', currencyCode: '' };
   }
 
   updateItem() {
-    // const index = this.items.findIndex(i => i.id === this.editId);
-    // if (index > -1) {
-    //   this.items[index] = { ...this.newItem };
-    //   this.cancelEdit();
-    //   alert('✅ Item updated successfully!');
-    // }
-
 
     this.api.UpdateCategory(this.newItem.id, this.newItem).subscribe({
       next: (response) => {
@@ -60,15 +57,9 @@ export class ProductsComponent {
         this.getProductsByCategory()
       }
     })
-
   }
 
   deleteItem(id: number) {
-    // if (confirm('Are you sure you want to delete this item?')) {
-    //   this.items = this.items.filter(i => i.id !== id);
-    //   alert('✅ Item deleted successfully!');
-    // }
-
     this.api.DeleteProduct(id).subscribe({
       next: (response) => {
         console.log(response);
@@ -89,7 +80,14 @@ export class ProductsComponent {
 
 
   addProduct() {
-    this.router.navigate(['add-product', this.categoryId])
+    console.log(this.categoryId);
+    
+    this.router.navigate(['assign-new-product', this.categoryId, this.warehouseId])
   }
-}
 
+
+
+
+
+
+}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/Services/api.service';
 
 @Component({
   selector: 'app-add-category',
@@ -16,11 +17,20 @@ export class AddCategoryComponent {
     descriptionAr: '',
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private api: ApiService) { }
 
   saveItem() {
     console.log('Saved:', this.newItem);
-    alert('✅ Item saved successfully!');
-    this.router.navigate(['/add-product']); // ترجع للقائمة أو أي صفحة رئيسية
+    // alert('✅ Item saved successfully!');
+    this.api.CreateCategory(this.newItem).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.router.navigate(['/add-product']);
+      },
+      error:(err)=>{
+        this.router.navigate(['/add-category']);
+        
+      }
+    })
   }
 }

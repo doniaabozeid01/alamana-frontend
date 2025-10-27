@@ -22,7 +22,7 @@
                   [checked]="selectedCategoryIds.includes(category.id)"
                   class="me-2"
                 />
-                {{ category.name }}
+                {{ category.nameEn }}
               </label>
 
               <!-- السهم يظهر مباشرة بعد الاختيار -->
@@ -35,7 +35,7 @@
 
             <!-- المنتجات تظهر حسب السهم -->
             <div class="ms-4 mt-2" *ngIf="categoryOpen[category.id] && selectedCategoryIds.includes(category.id)">
-              <div *ngFor="let product of getProductsByCategory(category.id)">
+              <div *ngFor="let product of category.products">
                 <label class="d-flex align-items-center" style="cursor: pointer;">
                   <input 
                     type="checkbox" 
@@ -44,7 +44,7 @@
                     [checked]="isProductSelected(category.id, product.id)"
                     class="me-2"
                   />
-                  {{ product.name }}
+                  {{ product.nameEn }}
                 </label>
               </div>
             </div>

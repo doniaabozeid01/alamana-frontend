@@ -6,7 +6,7 @@
       class="btn btn-main-color btn-sm fw-bold"
       (click)="addProduct()"
     >
-      + Add Product
+      + Assign New Product
     </button>
   </div>
 
@@ -19,9 +19,10 @@
               <th>#</th>
               <th>Name (EN)</th>
               <th>Name (AR)</th>
-              <th>Description (EN)</th>
-              <th>Description (AR)</th>
-              <th>Slug</th>
+              <th>Price</th>
+              <th>Currency (EN)</th>
+              <th>Currency (AR)</th>
+              <th>CurrencyCode</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -51,34 +52,45 @@
                 {{ item.nameAr }}
               </td>
 
+
               <td *ngIf="editMode && editId === item.id">
                 <input
-                  [(ngModel)]="newItem.descriptionEn"
+                  [(ngModel)]="newItem.price"
                   class="form-control text-center"
                 />
               </td>
               <td *ngIf="!(editMode && editId === item.id)">
-                {{ item.descriptionEn }}
+                {{ item.price }}
               </td>
 
               <td *ngIf="editMode && editId === item.id">
                 <input
-                  [(ngModel)]="newItem.descriptionAr"
+                  [(ngModel)]="newItem.currencyEn"
                   class="form-control text-center"
                 />
               </td>
               <td *ngIf="!(editMode && editId === item.id)">
-                {{ item.descriptionAr }}
+                {{ item.currencyEn }}
               </td>
 
               <td *ngIf="editMode && editId === item.id">
                 <input
-                  [(ngModel)]="newItem.slug"
+                  [(ngModel)]="newItem.currencyAr"
                   class="form-control text-center"
                 />
               </td>
               <td *ngIf="!(editMode && editId === item.id)">
-                {{ item.slug }}
+                {{ item.currencyAr }}
+              </td>
+
+              <td *ngIf="editMode && editId === item.id">
+                <input
+                  [(ngModel)]="newItem.currencyCode"
+                  class="form-control text-center"
+                />
+              </td>
+              <td *ngIf="!(editMode && editId === item.id)">
+                {{ item.currencyCode }}
               </td>
 
               <td>
@@ -100,12 +112,6 @@
                 </ng-container>
 
                 <ng-template #normalButtons>
-                  <button
-                    (click)="editItem(item)"
-                    class="btn btn-outline-primary btn-sm me-2"
-                  >
-                    ✏️
-                  </button>
                   <button
                     (click)="deleteItem(item.id)"
                     class="btn btn-outline-danger btn-sm"

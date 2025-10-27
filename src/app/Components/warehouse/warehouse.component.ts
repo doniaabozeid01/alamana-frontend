@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/Services/api.service';
 
 interface Warehouse {
   id: number;
   name: string;
   location: string;
-  capacity: number;
+  countryId: number;
 }
 
 @Component({
@@ -14,16 +15,19 @@ interface Warehouse {
   styleUrls: ['./warehouse.component.scss']
 })
 export class WarehouseComponent {
+  countryId: number = 0;
 
-  constructor(private router:Router){}
+  constructor(private router: Router, private api: ApiService, private activatedroute: ActivatedRoute) { }
 
-  warehouses: Warehouse[] = [
-    { id: 1, name: 'Main Store', location: 'Cairo', capacity: 500 },
-    { id: 2, name: 'Backup Store', location: 'Alexandria', capacity: 300 }
-  ];
+  ngOnInit() {
+    this.countryId = Number(this.activatedroute.snapshot.paramMap.get('countryId'));
+    this.getAllWarehouses();
+
+  }
+  warehouses: Warehouse[] = [];
 
   editId: number | null = null;
-  editedWarehouse: Warehouse = { id: 0, name: '', location: '', capacity: 0 };
+  editedWarehouse: Warehouse = { id: 0, name: '', location: '', countryId: 0 };
 
   startEdit(warehouse: Warehouse) {
     this.editId = warehouse.id;
@@ -31,33 +35,60 @@ export class WarehouseComponent {
   }
 
   saveEdit(id: number) {
-    const index = this.warehouses.findIndex(w => w.id === id);
-    if (index !== -1) {
-      this.warehouses[index] = { ...this.editedWarehouse };
-    }
-    this.cancelEdit();
+
+    this.editedWarehouse.countryId = this.countryId;
+    this.api.UpdateWarehouse(id, this.editedWarehouse).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.getAllWarehouses()
+
+        this.cancelEdit();
+      }
+    })
+
+
   }
 
   cancelEdit() {
     this.editId = null;
-    this.editedWarehouse = { id: 0, name: '', location: '', capacity: 0 };
+    this.editedWarehouse = { id: 0, name: '', location: '', countryId: 0 };
   }
 
   deleteWarehouse(id: number) {
-    this.warehouses = this.warehouses.filter(w => w.id !== id);
+
+    this.api.DeleteWarehouse(id).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.getAllWarehouses();
+      }
+    })
   }
 
   addWarehouse() {
-    // const newId = this.warehouses.length ? Math.max(...this.warehouses.map(w => w.id)) + 1 : 1;
-    // const newWarehouse: Warehouse = {
-    //   id: newId,
-    //   name: 'New Warehouse',
-    //   location: 'Enter location',
-    //   capacity: 0
-    // };
-    // this.warehouses.push(newWarehouse);
-    // this.startEdit(newWarehouse);
-
-    this.router.navigate(['add-warehouse'])
+    this.router.navigate(['add-warehouse', this.countryId]);
   }
+
+
+
+  getAllWarehouses() {
+    this.api.warehousesByCountry(this.countryId).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.warehouses = response.data.warehouses;
+      },
+      error: (err) => {
+        if (err.error.status) {
+          this.warehouses = [];
+        }
+      }
+    })
+  }
+
+
+  getCategories(id: number) {
+    this.router.navigate(['category-assignmnt', id])
+  }
+
+
+
 }

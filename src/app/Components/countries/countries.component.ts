@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/Services/api.service';
 
 interface Country {
   id: number;
@@ -17,16 +18,17 @@ interface Country {
 })
 export class CountriesComponent {
 
-  constructor(private router:Router){}
-  countries: Country[] = [
-    { id: 1, nameEn: 'Egypt', nameAr: 'مصر', currencyEn: 'EGP', currencyAr: 'جنيه', countryCode: 'EG' },
-    { id: 2, nameEn: 'Saudi Arabia', nameAr: 'السعودية', currencyEn: 'SAR', currencyAr: 'ريال', countryCode: 'SA' }
-  ];
+  constructor(private router: Router, private api: ApiService) { }
+  countries: Country[] = [];
 
-  newCountry: Country = { id: 0, nameEn: '', nameAr: '', currencyEn: 'USD', currencyAr: 'USD', countryCode: '' };
+  newCountry: Country = { id: 0, nameEn: '', nameAr: '', currencyEn: '', currencyAr: '', countryCode: '' };
   editMode = false;
   editId: number | null = null;
 
+
+  ngOnInit() {
+    this.getAllCountries();
+  }
   editCountry(country: Country) {
     this.editMode = true;
     this.editId = country.id;
@@ -34,11 +36,25 @@ export class CountriesComponent {
   }
 
   updateCountry() {
-    const index = this.countries.findIndex(c => c.id === this.editId);
-    if (index !== -1) {
-      this.countries[index] = { ...this.newCountry };
-      this.cancelEdit();
-    }
+    // const index = this.countries.findIndex(c => c.id === this.editId);
+    // if (index !== -1) {
+    //   this.countries[index] = { ...this.newCountry };
+    //   this.cancelEdit();
+    // }
+
+
+    this.api.UpdateCountry(this.newCountry.id, this.newCountry).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.getAllCountries()
+
+        this.cancelEdit();
+      }
+    })
+
+
+
+
   }
 
   cancelEdit() {
@@ -48,10 +64,31 @@ export class CountriesComponent {
   }
 
   deleteCountry(id: number) {
-    this.countries = this.countries.filter(c => c.id !== id);
+    this.api.DeleteCountry(id).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.getAllCountries();
+      }
+    })
   }
 
-    viewWarehouses(id: number) {
-    this.router.navigate(['warehouses'])
+  viewWarehouses(id: number) {
+    this.router.navigate(['warehouses', id]);
   }
+
+
+
+  getAllCountries() {
+    this.api.getAllCountries().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.countries = response.data.items;
+      }, error: (err) => {
+        if (err.error.status) {
+          this.countries = [];
+        }
+      }
+    })
+  }
+
 }

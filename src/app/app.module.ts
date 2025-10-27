@@ -15,6 +15,11 @@ import { CategoriesComponent } from './Components/categories/categories.componen
 import { AddCategoryComponent } from './Components/add-category/add-category.component';
 import { AddProductComponent } from './Components/add-product/add-product.component';
 import { ProductsComponent } from './Components/products/products.component';
+import { HttpClientModule } from '@angular/common/http';
+import { WarehouseCategoryAssignComponent } from './Components/warehouse-category-assign/warehouse-category-assign.component';
+import { AssignNewCaetgoryToWarehouseComponent } from './Components/assign-new-caetgory-to-warehouse/assign-new-caetgory-to-warehouse.component';
+import { ProductCategoryWarehouseCountryComponent } from './Components/product-category-warehouse-country/product-category-warehouse-country.component';
+import { AssignNewProductToWarehouseComponent } from './Components/assign-new-product-to-warehouse/assign-new-product-to-warehouse.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +34,17 @@ import { ProductsComponent } from './Components/products/products.component';
     CategoriesComponent,
     AddCategoryComponent,
     AddProductComponent,
-    ProductsComponent
+    ProductsComponent,
+    WarehouseCategoryAssignComponent,
+    AssignNewCaetgoryToWarehouseComponent,
+    ProductCategoryWarehouseCountryComponent,
+    AssignNewProductToWarehouseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
