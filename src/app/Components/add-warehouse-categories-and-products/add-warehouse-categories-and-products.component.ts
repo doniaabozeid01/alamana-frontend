@@ -84,7 +84,7 @@ export class AddWarehouseCategoriesAndProductsComponent {
     this.api.AssignWarehouseByProductsAndCategories(payload).subscribe({
       next: (response) => {
         console.log('Saved', response);
-        this.router.navigate(['countries']);
+        this.router.navigate(['/dashboard/countries']);
       }
     });
   }

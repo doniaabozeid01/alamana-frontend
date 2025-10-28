@@ -73,7 +73,7 @@ export class CategoriesComponent {
 
 
   getProducts(category: any) {
-    this.router.navigate(['/products',category.id])
+    this.router.navigate(['/dashboard/products',category.id])
   }
 
 

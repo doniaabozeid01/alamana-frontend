@@ -20,69 +20,41 @@
           <tbody>
             <tr *ngFor="let item of items">
               <td>{{ item.id }}</td>
+              <td>{{ item.nameEn }}</td>
+              <td>{{ item.nameAr }}</td>
 
-              <!-- Inline edit -->
-              <td *ngIf="editMode && editId === item.id">
-                <input
-                  [(ngModel)]="newItem.nameEn"
-                  class="form-control text-center"
-                />
+              <!-- Price فقط هو اللي بيتحول لـ input -->
+              <td *ngIf="editMode && editId === item.id; else priceRead">
+                <input type="number" [(ngModel)]="newPrice" class="form-control text-center" min="0" step="0.01"
+                  (keyup.enter)="updateItem(item)" (keyup.escape)="cancelEdit()" />
               </td>
-              <td *ngIf="!(editMode && editId === item.id)">
-                {{ item.nameEn }}
-              </td>
+              <ng-template #priceRead>
+                <td>{{ item.price }}</td>
+              </ng-template>
 
-              <td *ngIf="editMode && editId === item.id">
-                <input
-                  [(ngModel)]="newItem.nameAr"
-                  class="form-control text-center"
-                />
-              </td>
-              <td *ngIf="!(editMode && editId === item.id)">
-                {{ item.nameAr }}
-              </td>
-
-
-              <td *ngIf="editMode && editId === item.id">
-                <input
-                  [(ngModel)]="newItem.price"
-                  class="form-control text-center"
-                />
-              </td>
-              <td *ngIf="!(editMode && editId === item.id)">
-                {{ item.price }}
-              </td>
-
-              <td *ngIf="editMode && editId === item.id">
-                <input
-                  [(ngModel)]="newItem.currencyEn"
-                  class="form-control text-center"
-                />
-              </td>
-              <td *ngIf="!(editMode && editId === item.id)">
-                {{ item.currencyEn }}
-              </td>
-
-              <td *ngIf="editMode && editId === item.id">
-                <input
-                  [(ngModel)]="newItem.currencyAr"
-                  class="form-control text-center"
-                />
-              </td>
-              <td *ngIf="!(editMode && editId === item.id)">
-                {{ item.currencyAr }}
-              </td>
-
+              <td>{{ item.currencyEn }}</td>
+              <td>{{ item.currencyAr }}</td>
 
               <td>
-                  <button
-                    (click)="deleteItem(item.id)"
-                    class="btn btn-outline-danger btn-sm"
-                  >
-                    🗑
+                <ng-container *ngIf="editMode && editId === item.id; else normalButtons">
+                  <button (click)="updateItem(item)" class="btn btn-success btn-sm me-2"
+                    [disabled]="newPrice == null || newPrice === item.price">
+                    Save
                   </button>
+                  <button (click)="cancelEdit()" class="btn btn-secondary btn-sm">Cancel</button>
+                </ng-container>
+
+                <ng-template #normalButtons>
+                  <button (click)="editItem(item)" class="btn btn-sm me-2">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button (click)="deleteItem(item.id)" class="btn btn-sm">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </ng-template>
               </td>
             </tr>
+
 
             <tr *ngIf="items.length === 0">
               <td colspan="8" class="text-muted py-3">No items found.</td>

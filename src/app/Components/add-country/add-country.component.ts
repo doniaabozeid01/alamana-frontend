@@ -36,7 +36,7 @@ export class AddCountryComponent {
       next:(response)=>{
         console.log(response);
         
-        this.router.navigate(['/add-warehouse',response.data]); // يرجع للقائمة أو أي صفحة رئيسية
+        this.router.navigate(['/dashboard/add-warehouse',response.data]); // يرجع للقائمة أو أي صفحة رئيسية
         
       }
     })

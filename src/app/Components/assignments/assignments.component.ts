@@ -35,11 +35,11 @@ export class AssignmentsComponent {
   }
 
   assignProduct(id: number) {
-    this.router.navigate(['assign-product-to-country-and-add-price', id]);
+    this.router.navigate(['/dashboard/assign-product-to-country-and-add-price', id]);
   }
 
   ProductData(id: number) {
-    this.router.navigate(['country-products-data', id]);
+    this.router.navigate(['/dashboard/country-products-data', id]);
   }
 
   getAllCountries() {

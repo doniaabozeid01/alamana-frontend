@@ -25,10 +25,10 @@ export class AddCategoryComponent {
     this.api.CreateCategory(this.newItem).subscribe({
       next: (response) => {
         console.log(response);
-        this.router.navigate(['/add-product']);
+        this.router.navigate(['/dashboard/add-product',response.data]);
       },
       error:(err)=>{
-        this.router.navigate(['/add-category']);
+        this.router.navigate(['/dashboard/add-category']);
         
       }
     })

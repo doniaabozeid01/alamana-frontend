@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
   baseUrl: string = 'https://localhost:7170/api/';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   getAllCategories(): Observable<any> {
     return this.http.get(
@@ -160,11 +160,26 @@ export class ApiService {
     );
   }
 
-DeleteProductCountryPrice(id:number):Observable<any>{
+  DeleteProductCountryPrice(id: number): Observable<any> {
     return this.http.delete(
       `${this.baseUrl}ProductCountryPrice/DeleteProductCountryPrice/${id}`
     );
-}
+  }
 
-  
+
+  Login(data: any): Observable<any> {
+    return this.http.post(
+      `${this.baseUrl}Auth/login`,
+      data
+    );
+  }
+
+
+  UpdateProductCountryPrice(id: number, data: any): Observable<any> {
+    return this.http.put(
+      `${this.baseUrl}ProductCountryPrice/UpdateProductCountryPrice/${id}`,
+      data
+    );
+  }
+
 }

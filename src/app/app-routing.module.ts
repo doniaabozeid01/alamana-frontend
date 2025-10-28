@@ -20,6 +20,7 @@ import { AssignProductToCountryAndAddPriceComponent } from './Components/assign-
 import { CountryProductsdataComponent } from './Components/country-productsdata/country-productsdata.component';
 import { SplashComponent } from './Components/splash/splash.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { LoginComponent } from './Components/login/login.component';
 
 const routes: Routes = [
   //  {
@@ -37,49 +38,94 @@ const routes: Routes = [
   // },
 
   { path: '', redirectTo: '/splash', pathMatch: 'full' },
-  { path: 'countries', component: CountriesComponent },
-  { path: 'categories', component: CategoriesComponent },
-  { path: 'products/:categoryId', component: ProductsComponent },
-  { path: 'add-country', component: AddCountryComponent },
-  { path: 'warehouses/:countryId', component: WarehouseComponent },
-  {
-    path: 'add-warehouse-categories-and-products/:warehouseId',
-    component: AddWarehouseCategoriesAndProductsComponent,
-  },
-  { path: 'add-warehouse/:countryId', component: AddWarehouseComponent },
-  { path: 'add-category', component: AddCategoryComponent },
-  { path: 'add-product/:categoryId', component: AddProductComponent },
-  {
-    path: 'category-assignmnt/:warehouseId',
-    component: WarehouseCategoryAssignComponent,
-  },
-  {
-    path: 'assign-new-category/:warehouseId',
-    component: AssignNewCaetgoryToWarehouseComponent,
-  },
-  {
-    path: 'assign-new-product/:categoryId/:warehouseId',
-    component: AssignNewProductToWarehouseComponent,
-  },
-  {
-    path: 'product-category-warehouse-country/:warehouseId/:categoryId',
-    component: ProductCategoryWarehouseCountryComponent,
-  },
-  { path: 'assignments', component: AssignmentsComponent },
-  {
-    path: 'country-products-data/:countryId',
-    component: CountryProductsdataComponent,
-  },
-  {
-    path: 'assign-product-to-country-and-add-price/:countryId',
-    component: AssignProductToCountryAndAddPriceComponent,
-  },
+  // { path: 'countries', component: CountriesComponent },
+  // { path: 'categories', component: CategoriesComponent },
+  // { path: 'products/:categoryId', component: ProductsComponent },
+  // { path: 'add-country', component: AddCountryComponent },
+  // { path: 'warehouses/:countryId', component: WarehouseComponent },
+  // {
+  //   path: 'add-warehouse-categories-and-products/:warehouseId',
+  //   component: AddWarehouseCategoriesAndProductsComponent,
+  // },
+  // { path: 'add-warehouse/:countryId', component: AddWarehouseComponent },
+  // { path: 'add-category', component: AddCategoryComponent },
+  // { path: 'add-product/:categoryId', component: AddProductComponent },
+  // {
+  //   path: 'category-assignmnt/:warehouseId',
+  //   component: WarehouseCategoryAssignComponent,
+  // },
+  // {
+  //   path: 'assign-new-category/:warehouseId',
+  //   component: AssignNewCaetgoryToWarehouseComponent,
+  // },
+  // {
+  //   path: 'assign-new-product/:categoryId/:warehouseId',
+  //   component: AssignNewProductToWarehouseComponent,
+  // },
+  // {
+  //   path: 'product-category-warehouse-country/:warehouseId/:categoryId',
+  //   component: ProductCategoryWarehouseCountryComponent,
+  // },
+  // { path: 'assignments', component: AssignmentsComponent },
+  // {
+  //   path: 'country-products-data/:countryId',
+  //   component: CountryProductsdataComponent,
+  // },
+  // {
+  //   path: 'assign-product-to-country-and-add-price/:countryId',
+  //   component: AssignProductToCountryAndAddPriceComponent,
+  // },
+
+
+  { path: 'login', component: LoginComponent },
+
   { path: 'splash', component: SplashComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard', component: DashboardComponent,
+    children: [
+      { path: 'countries', component: CountriesComponent },
+      { path: 'categories', component: CategoriesComponent },
+      { path: 'products/:categoryId', component: ProductsComponent },
+      { path: 'add-country', component: AddCountryComponent },
+      { path: 'warehouses/:countryId', component: WarehouseComponent },
+      {
+        path: 'add-warehouse-categories-and-products/:warehouseId',
+        component: AddWarehouseCategoriesAndProductsComponent,
+      },
+      { path: 'add-warehouse/:countryId', component: AddWarehouseComponent },
+      { path: 'add-category', component: AddCategoryComponent },
+      { path: 'add-product/:categoryId', component: AddProductComponent },
+      {
+        path: 'category-assignmnt/:warehouseId',
+        component: WarehouseCategoryAssignComponent,
+      },
+      {
+        path: 'assign-new-category/:warehouseId',
+        component: AssignNewCaetgoryToWarehouseComponent,
+      },
+      {
+        path: 'assign-new-product/:categoryId/:warehouseId',
+        component: AssignNewProductToWarehouseComponent,
+      },
+      {
+        path: 'product-category-warehouse-country/:warehouseId/:categoryId',
+        component: ProductCategoryWarehouseCountryComponent,
+      },
+      { path: 'assignments', component: AssignmentsComponent },
+      {
+        path: 'country-products-data/:countryId',
+        component: CountryProductsdataComponent,
+      },
+      {
+        path: 'assign-product-to-country-and-add-price/:countryId',
+        component: AssignProductToCountryAndAddPriceComponent,
+      },
+    ]
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

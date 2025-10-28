@@ -1,0 +1,90 @@
+/* الصفحة كلها */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  // background: linear-gradient(135deg, #1D75B9, #8CC549);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* كارت تسجيل الدخول */
+.login-card {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+/* اللوجو */
+.logo {
+  width: 140px;
+  margin-bottom: 24px;
+}
+
+/* الحقول */
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.field label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  // color: #1D75B9;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.field input:focus {
+  border-color: #8CC549;
+  box-shadow: 0 0 5px rgba(140, 197, 73, 0.4);
+}
+
+/* الزر */
+button {
+  // background-color: #1D75B9;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  // background-color: #155d91;
+}
+
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* الأخطاء */
+.error {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* موبايل */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 20px;
+  }
+}

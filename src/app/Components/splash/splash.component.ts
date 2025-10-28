@@ -13,7 +13,7 @@ export class SplashComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       // بعد 3 ثواني ينتقل لصفحة الـ Dashboard
-      this.router.navigateByUrl('/dashboard');
+      this.router.navigateByUrl('/login');
     }, 3000);
   }
 }

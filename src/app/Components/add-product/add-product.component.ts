@@ -53,6 +53,6 @@ export class AddProductComponent {
   }
 
   done() {
-    this.router.navigate(['/categories'])
+    this.router.navigate(['/dashboard/categories'])
   }
 }

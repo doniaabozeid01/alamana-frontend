@@ -21,7 +21,7 @@ export class CountryProductsdataComponent {
     private router: Router,
     private api: ApiService,
     private activatedroute: ActivatedRoute
-  ) {}
+  ) { }
   items: Item[] = [];
   countryId: number = 0;
   editMode = false;
@@ -64,10 +64,79 @@ export class CountryProductsdataComponent {
           console.log(response);
           this.items = response.data;
         },
-        error:(err)=>{
+        error: (err) => {
           this.items = [];
         }
       });
+  }
+
+
+
+
+  //   editItem(item: Item) {
+  //   this.editMode = true;
+  //   this.editId = item.id;
+  //   this.newItem = { ...item };
+  // }
+
+  // cancelEdit() {
+  //   this.editMode = false;
+  //   this.editId = null;
+  //   this.newItem = { id: 0, productId: 0, nameEn: '', nameAr: '', price: 0, currencyEn: '', currencyAr:'' };
+  // }
+
+  // updateItem() {
+  //   this.api.UpdateProductCountryPrice(this.newItem.id, this.newItem).subscribe({
+  //     next: (response) => {
+  //       console.log(response);
+  //       this.cancelEdit();
+  //       this.GetProductsByCountryId()
+  //     }
+  //   })
+  // }
+
+
+
+
+
+
+  newPrice: number | null = null;
+
+  editItem(item: Item) {
+    this.editMode = true;
+    this.editId = item.id;
+    this.newPrice = item.price;              // هنعدّل السعر بس
+  }
+
+  cancelEdit() {
+    this.editMode = false;
+    this.editId = null;
+    this.newPrice = null;
+  }
+
+  updateItem(item: Item) {
+    if (this.newPrice == null || this.newPrice === item.price) { return; }
+
+    // لو الـ API عندك يأخذ Body كامل:
+    const payload: Item = { ...item, price: this.newPrice };
+
+    const data = {
+
+      "id": item.id,
+      "productId": item.productId,
+      "countryId": this.countryId,
+      "amount": this.newPrice
+    }
+
+    console.log(data);
+    
+
+    this.api.UpdateProductCountryPrice(item.id, data).subscribe({
+      next: () => {
+        this.cancelEdit();
+        this.GetProductsByCountryId();
+      }
+    });
   }
 
 

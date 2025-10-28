@@ -72,7 +72,7 @@ export class ProductsComponent {
     this.api.DeleteProduct(id).subscribe({
       next: (response) => {
         console.log(response);
-        this.getProductsByCategory()
+        this.getProductsByCategory();
       }
     })
   }
@@ -83,13 +83,16 @@ export class ProductsComponent {
       next: (response) => {
         console.log(response);
         this.items = response.data.products;
+      },error:(err)=>{
+        console.log(err);
+        this.items = [];
       }
     })
   }
 
 
   addProduct() {
-    this.router.navigate(['add-product', this.categoryId])
+    this.router.navigate(['/dashboard/add-product', this.categoryId])
   }
 }
 

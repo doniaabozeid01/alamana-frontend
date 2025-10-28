@@ -61,7 +61,7 @@ export class ProductCategoryWarehouseCountryComponent {
   addProduct() {
     console.log(this.categoryId);
     
-    this.router.navigate(['assign-new-product', this.categoryId, this.warehouseId])
+    this.router.navigate(['/dashboard/assign-new-product', this.categoryId, this.warehouseId])
   }
 
 

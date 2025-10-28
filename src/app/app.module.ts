@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WarehouseComponent } from './Components/warehouse/warehouse.component';
 import { AddWarehouseComponent } from './Components/add-warehouse/add-warehouse.component';
 import { CountriesComponent } from './Components/countries/countries.component';
@@ -56,7 +56,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

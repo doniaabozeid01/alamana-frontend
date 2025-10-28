@@ -62,7 +62,7 @@ export class AssignProductToCountryAndAddPriceComponent {
         // إعادة ضبط الحقل
         this.newItem = { productId: null, amount: 0 };
         // لو عايزة ترجعي لصفحة عرض فئات المخزن:
-        this.router.navigate(['assign-product-to-country-and-add-price', this.countryId]);
+        this.router.navigate(['/dashboard/assign-product-to-country-and-add-price', this.countryId]);
       },
     });
   }
@@ -70,7 +70,7 @@ export class AssignProductToCountryAndAddPriceComponent {
   done() {
     // رجوع للي يناسبك
     this.router.navigate([
-      'country-products-data',
+      '/dashboard/country-products-data',
       this.countryId,
     ]);
   }

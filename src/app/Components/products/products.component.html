@@ -102,15 +102,15 @@
                 <ng-template #normalButtons>
                   <button
                     (click)="editItem(item)"
-                    class="btn btn-outline-primary btn-sm me-2"
+                    class="btn btn-sm me-2"
                   >
-                    ✏️
+                    <i class="fa-solid fa-pen"></i>
                   </button>
                   <button
                     (click)="deleteItem(item.id)"
-                    class="btn btn-outline-danger btn-sm"
+                    class="btn btn-sm"
                   >
-                    🗑
+                    <i class="fa-solid fa-trash"></i>
                   </button>
                 </ng-template>
               </td>

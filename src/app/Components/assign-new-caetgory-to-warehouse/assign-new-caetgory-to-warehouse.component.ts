@@ -62,6 +62,6 @@ export class AssignNewCaetgoryToWarehouseComponent implements OnInit {
 
   done() {
     // رجوع للي يناسبك
-    this.router.navigate(['category-assignmnt',this.warehouseId]);
+    this.router.navigate(['/dashboard/category-assignmnt',this.warehouseId]);
   }
 }

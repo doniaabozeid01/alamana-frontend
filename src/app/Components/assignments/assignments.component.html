@@ -1,5 +1,10 @@
 <div class="parent m-0 p-0 px-3 px-lg-5">
-  <div class="card shadow border-0 w-100 p-0 m-0">
+  <h4 class="mb-0">Countries</h4>
+
+  <div class="card border-0 w-100 p-0 m-0">
+
+
+
     <div class="card-body">
       <div class="table-responsive">
         <table class="table table-hover align-middle text-center">
@@ -21,50 +26,35 @@
 
               <!-- Inline Edit -->
               <td *ngIf="editMode && editId === country.id">
-                <input
-                  [(ngModel)]="newCountry.nameEn"
-                  class="form-control text-center"
-                />
+                <input [(ngModel)]="newCountry.nameEn" class="form-control text-center" />
               </td>
               <td *ngIf="!(editMode && editId === country.id)">
                 {{ country.nameEn }}
               </td>
 
               <td *ngIf="editMode && editId === country.id">
-                <input
-                  [(ngModel)]="newCountry.nameAr"
-                  class="form-control text-center"
-                />
+                <input [(ngModel)]="newCountry.nameAr" class="form-control text-center" />
               </td>
               <td *ngIf="!(editMode && editId === country.id)">
                 {{ country.nameAr }}
               </td>
 
               <td *ngIf="editMode && editId === country.id">
-                <input
-                  [(ngModel)]="newCountry.currencyEn"
-                  class="form-control text-center"
-                />
+                <input [(ngModel)]="newCountry.currencyEn" class="form-control text-center" />
               </td>
               <td *ngIf="!(editMode && editId === country.id)">
                 {{ country.currencyEn }}
               </td>
 
               <td *ngIf="editMode && editId === country.id">
-                <input
-                  [(ngModel)]="newCountry.currencyAr"
-                  class="form-control text-center"
-                />
+                <input [(ngModel)]="newCountry.currencyAr" class="form-control text-center" />
               </td>
               <td *ngIf="!(editMode && editId === country.id)">
                 {{ country.currencyAr }}
               </td>
 
               <td *ngIf="editMode && editId === country.id">
-                <input
-                  [(ngModel)]="newCountry.countryCode"
-                  class="form-control text-center"
-                />
+                <input [(ngModel)]="newCountry.countryCode" class="form-control text-center" />
               </td>
               <td *ngIf="!(editMode && editId === country.id)">
                 {{ country.countryCode }}
@@ -72,17 +62,11 @@
 
               <!-- Actions -->
               <td>
-                <button
-                  (click)="assignProduct(country.id)"
-                  class="btn btn-outline-info btn-sm me-2"
-                >
+                <button (click)="assignProduct(country.id)" class="btn btn-outlined-main-color btn-sm me-2">
                   assign products
                 </button>
 
-                                <button
-                  (click)="ProductData(country.id)"
-                  class="btn btn-outline-info btn-sm me-2"
-                >
+                <button (click)="ProductData(country.id)" class="btn btn-outlined-main-color btn-sm me-2">
                   products
                 </button>
               </td>

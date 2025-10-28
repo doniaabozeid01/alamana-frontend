@@ -64,6 +64,6 @@ export class AssignNewProductToWarehouseComponent {
 
   done() {
     // رجوع للي يناسبك
-    this.router.navigate(['product-category-warehouse-country',this.warehouseId,this.categoryId]);
+    this.router.navigate(['/dashboard/product-category-warehouse-country',this.warehouseId,this.categoryId]);
   }
 }

@@ -12,9 +12,26 @@
     background: white;
     z-index: 999;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 0;
   }
 
   .sidebar.active {
     left: 0;
   }
+}
+
+.navbar-small{
+  // background-color: darkblue;
+  position: sticky;
+  color: white;
+  padding: 10px;
+  z-index: 9999;
+}
+
+
+i{
+  color: white;
+}
+.main-content{
+  margin-top: 30px;
 }

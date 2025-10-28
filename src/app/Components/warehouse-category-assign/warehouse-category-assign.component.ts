@@ -37,7 +37,7 @@ export class WarehouseCategoryAssignComponent {
 
 
   assignCategory() {
-    this.router.navigate(['assign-new-category', this.warehouseId]);
+    this.router.navigate(['/dashboard/assign-new-category', this.warehouseId]);
   }
 
 
@@ -59,7 +59,7 @@ export class WarehouseCategoryAssignComponent {
 
 
   getProducts(id:number) {
-    this.router.navigate(['product-category-warehouse-country', this.warehouseId,id])
+    this.router.navigate(['/dashboard/product-category-warehouse-country', this.warehouseId,id])
   }
 
 

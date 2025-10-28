@@ -37,7 +37,7 @@ export class AddWarehouseComponent {
     this.api.CreateWarehouse(this.newWarehouse).subscribe({
       next: (response) => {
         console.log(response);
-        this.router.navigate(['/add-warehouse-categories-and-products',response.data]); // يرجع تاني لصفحة القائمة
+        this.router.navigate(['/dashboard/add-warehouse-categories-and-products',response.data]); // يرجع تاني لصفحة القائمة
 
       }
     }
@@ -45,6 +45,6 @@ export class AddWarehouseComponent {
   }
 
   cancel() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/dashboard/warehouses',this.countryId]);
   }
 }

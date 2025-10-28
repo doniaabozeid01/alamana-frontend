@@ -73,7 +73,7 @@ export class CountriesComponent {
   }
 
   viewWarehouses(id: number) {
-    this.router.navigate(['warehouses', id]);
+    this.router.navigate(['/dashboard/warehouses', id]);
   }
 
 

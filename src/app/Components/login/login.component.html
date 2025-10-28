@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="login-page">
+  <div class="login-card">
+    <img src="../../../assets/logo11.png" alt="Alamana Logo" class="logo">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="you@example.com" />
+        <small class="error" *ngIf="f.email.touched && f.email.invalid">
+          <span *ngIf="f.email.errors?.['required']">Email مطلوب</span>
+          <span *ngIf="f.email.errors?.['email']">بريد إلكتروني غير صالح</span>
+        </small>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="••••••••" />
+        <small class="error" *ngIf="f.password.touched && f.password.invalid">
+          <span *ngIf="f.password.errors?.['required']">Password مطلوب</span>
+          <span *ngIf="f.password.errors?.['minlength']">الحد الأدنى 8 حروف</span>
+        </small>
+      </div>
+
+      <button type="submit" class="btn-main-color" [disabled]="form.invalid">Login</button>
+    </form>
+  </div>
+</div>
